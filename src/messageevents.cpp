@@ -1,4 +1,4 @@
-#include "sc2replay/messageevents.h"
+#include "messageevents.h"
 
 #include <fstream>
 #include <algorithm>

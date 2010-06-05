@@ -1,14 +1,11 @@
 #ifndef SC2REPLAY_MPQIMPL_H
 #define SC2REPLAY_MPQIMPL_H
 
-#include "sc2replay/types.h"
-#include "sc2replay/mpq.h"
+#include "types.h"
+#include "mpq.h"
 
-#ifdef BUILD_LIBMPQ
-#  include <libmpq/mpq.h>
-#else // StormLib
-#  include <StormLib/StormLib.h>
-#endif
+#include <libmpq/mpq.h>
+
 
 namespace sc2replay
 {
@@ -31,11 +28,7 @@ public:
 private:
   std::string filename_;
 
-#ifdef BUILD_LIBMPQ
   mpq_archive_s* archive_;
-#else
-  HANDLE         archive_;
-#endif
 };
 
 } // namespace sc2replay

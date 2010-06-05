@@ -1,7 +1,7 @@
 #ifndef SC2REPLAY_MESSAGEEVENTS_H
 #define SC2REPLAY_MESSAGEEVENTS_H
 
-#include "sc2replay/types.h"
+#include "types.h"
 
 #include <string>
 #include <vector>

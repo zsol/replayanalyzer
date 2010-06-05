@@ -1,6 +1,6 @@
-#include "sc2replay/replay.h"
+#include "replay.h"
 
-#include "sc2replay/mpq.h"
+#include "mpq.h"
 
 #include <iostream>
 #include <fstream>

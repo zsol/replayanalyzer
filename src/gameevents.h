@@ -1,7 +1,7 @@
 #ifndef SC2REPLAY_GAMEEVENTS_H
 #define SC2REPLAY_GAMEEVENTS_H
 
-#include "sc2replay/types.h"
+#include "types.h"
 
 #include <list>
 #include <string>

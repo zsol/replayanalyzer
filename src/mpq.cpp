@@ -1,6 +1,6 @@
-#include "sc2replay/mpq.h"
+#include "mpq.h"
 
-#include "private/mpqimpl.h"
+#include "mpqimpl.h"
 
 namespace sc2replay
 {

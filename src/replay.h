@@ -1,11 +1,11 @@
 #ifndef SC2REPLAY_REPLAY_H
 #define SC2REPLAY_REPLAY_H
 
-#include "sc2replay/types.h"
-#include "sc2replay/gameevents.h"
-#include "sc2replay/info.h"
-#include "sc2replay/messageevents.h"
-#include "sc2replay/syncevents.h"
+#include "types.h"
+#include "gameevents.h"
+#include "info.h"
+#include "messageevents.h"
+#include "syncevents.h"
 
 #include <string>
 

@@ -24,7 +24,7 @@ MESSAGE( STATUS "Building tools:           " ${BUILD_TOOLS}  )
 
 ############################## Sources ########################################
 FILE( GLOB_RECURSE Sources        src/*.cpp )
-FILE( GLOB_RECURSE Headers        src/*.hpp )
+FILE( GLOB_RECURSE Headers        src/*.hpp src/*.h )
 
 # Group files in virtual folders under Visual Studio
 SOURCE_GROUP( "Sources"           FILES ${Sources} )

@@ -1,4 +1,4 @@
-#include "sc2replay/syncevents.h"
+#include "syncevents.h"
 
 #include <fstream>
 

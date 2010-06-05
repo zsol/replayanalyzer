@@ -1,4 +1,4 @@
-#include "sc2replay/gameevents.h"
+#include "gameevents.h"
 
 #include <fstream>
 #include <iostream>

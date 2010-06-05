@@ -4,7 +4,7 @@
 #include <string>
 #include <sstream>
 
-#include "sc2replay/types.h"
+#include "types.h"
 
 namespace sc2replay
 {
