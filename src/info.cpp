@@ -124,7 +124,8 @@ namespace sc2replay
         for (int i=0; i < 9; ++i)
             readKV(s);
 
-        players_.push_back(Player(shortName, race, fullName));
+        if (shortName.size() && race.size())
+            players_.push_back(Player(shortName, race, fullName));
 
         return true;
 
