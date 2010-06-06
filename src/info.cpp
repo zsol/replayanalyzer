@@ -83,7 +83,7 @@ namespace sc2replay
 
         s.seekg(5, std::ios::cur); // 06 05 02 00 02
 
-        mapName_ = readStr(s);
+        mapFilename_ = readStr(s);
     }
 
     bool
