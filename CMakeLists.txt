@@ -32,10 +32,10 @@ SOURCE_GROUP( "Headers"           FILES ${Headers} )
 
 ############################## External libraries #############################
 # Not used yet
-#INCLUDE( FindBoost )
-#SET( Boost_USE_MULTITHREADED ON )
-#SET( Boost_USE_STATIC_LIBS   ON )
-#FIND_PACKAGE( Boost REQUIRED COMPONENTS serialization filesystem graph thread date_time program_options unit_test_framework )
+INCLUDE( FindBoost )
+SET( Boost_USE_MULTITHREADED ON )
+SET( Boost_USE_STATIC_LIBS   ON )
+FIND_PACKAGE( Boost REQUIRED COMPONENTS iostreams )
 
 FIND_LIBRARY( MPQLib NAMES mpq )
 

@@ -4,6 +4,9 @@
 #include "types.h"
 
 #include <string>
+#include <iosfwd>
+#include <boost/iostreams/stream.hpp>
+#include <boost/iostreams/device/array.hpp>
 
 namespace sc2replay
 {
@@ -39,6 +42,8 @@ public:
            off_t              size );
   ~MPQFile();
   
+  typedef boost::iostreams::stream<boost::iostreams::basic_array_source<uint8_t> > array_stream;
+
 public:
   void load( const std::string& filename );
   
@@ -48,11 +53,15 @@ public:
   const std::string& getFileName   () const;
   const uint8_t*     getFileContent() const;
   
+  /// \todo wrap this in a smart pointer
+  array_stream* getFileStream(); 
+  
 private:
   off_t             size_;
   const uint8_t*    buffer_;
   const std::string filename_;
   const MPQArchive& archive_;
+  array_stream stream_;
   
 private:
   MPQFile( const MPQFile& ); // Not copyable
