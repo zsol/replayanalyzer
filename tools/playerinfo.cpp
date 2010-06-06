@@ -27,7 +27,7 @@ int main(int argc, char** argv)
   {
       std::cout << "Player " << cnt++ << ": " 
                 << (*it).getShortName() << " ( " 
-                << (*it).getFullName() << ") - " 
+                << (*it).getFullName() << " ) - " 
                 << (*it).getRace() << std::endl;
   }
 
