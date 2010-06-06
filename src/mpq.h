@@ -27,7 +27,7 @@ public:
   bool load( const std::string& filename );
   
 public:
-  const MPQFile* getFile( const std::string& filename ) const;
+  MPQFile* getFile( const std::string& filename ) const;
   
 private:
   MPQArchiveImpl* impl_;

@@ -23,7 +23,7 @@ public:
   const std::string& getFilename() const;
   
 public:
-  const MPQFile* getFile( const MPQArchive* self, const std::string& filename ) const;
+  MPQFile* getFile( const MPQArchive* self, const std::string& filename ) const;
   
 private:
   std::string filename_;

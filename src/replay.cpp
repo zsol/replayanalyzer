@@ -35,13 +35,13 @@ void Replay::load( const std::string& filename )
     return;
   }
 
-  const MPQFile* infoFile    = archive.getFile( "replay.info"           );
+  MPQFile* infoFile    = archive.getFile( "replay.info"           );
   const MPQFile* gameFile    = archive.getFile( "replay.game.events"    );
   const MPQFile* syncFile    = archive.getFile( "replay.sync.events"    );
   const MPQFile* messageFile = archive.getFile( "replay.message.events" );
   const MPQFile* saveFile    = archive.getFile( "save.jpg"              );
   
-  info_.load         ( infoFile->getFileContent(),    infoFile->getFileSize()    );
+  info_.load         ( *infoFile->getFileStream());
   gameEvents_.load   ( gameFile->getFileContent(),    gameFile->getFileSize()    );
   syncEvents_.load   ( syncFile->getFileContent(),    syncFile->getFileSize()    );
   messageEvents_.load( messageFile->getFileContent(), messageFile->getFileSize() );

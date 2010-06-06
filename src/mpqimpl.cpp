@@ -41,7 +41,7 @@ const std::string& MPQArchiveImpl::getFilename() const
   return filename_;
 }
 
-const MPQFile* MPQArchiveImpl::getFile( const MPQArchive* self, const std::string& filename ) const
+MPQFile* MPQArchiveImpl::getFile( const MPQArchive* self, const std::string& filename ) const
 {
   uint32_t number = 0;
   ::off_t    size   = 0;

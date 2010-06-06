@@ -24,7 +24,7 @@ namespace sc2replay
         return impl_->load( this, filename );
     }
 
-    const MPQFile* MPQArchive::getFile( const std::string& filename ) const
+    MPQFile* MPQArchive::getFile( const std::string& filename ) const
     {
         return impl_->getFile( this, filename );
     }

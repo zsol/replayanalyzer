@@ -12,6 +12,7 @@ int main(int argc, char** argv)
       return 1;
   }
 
+//  stream<file_source> file(argv[1], std::ios::in | std::ios::binary);
   std::ifstream file(argv[1], std::ios::in | std::ios::binary);
 
   sc2replay::Info i;
