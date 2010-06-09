@@ -26,3 +26,8 @@ namespace sc2replay
 }
 
 #endif
+// Local Variables:
+// mode:c++
+// c-file-style:stroustrup
+// end:
+

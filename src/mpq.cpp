@@ -72,3 +72,8 @@ namespace sc2replay
     }
 
 } // namespace sc2replay
+// Local Variables:
+// mode:c++
+// c-file-style:stroustrup
+// end:
+

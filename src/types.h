@@ -37,3 +37,8 @@ typedef uint32_t timestamp_t;
 } // namespace sc2replay
 
 #endif // S2REPLAY_TYPES_H
+// Local Variables:
+// mode:c++
+// c-file-style:stroustrup
+// end:
+

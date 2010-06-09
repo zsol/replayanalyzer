@@ -338,3 +338,8 @@ struct SystemSynchronization : public GameEvent
 } // namespace sc2replay
 
 #endif // SC2REPLAY_GAMEEVENTS_H
+// Local Variables:
+// mode:c++
+// c-file-style:stroustrup
+// end:
+

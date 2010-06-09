@@ -95,3 +95,8 @@ private:
 } // namespace sc2replay
 
 #endif // SC2REPLAY_MESSAGEEVENTS_H
+// Local Variables:
+// mode:c++
+// c-file-style:stroustrup
+// end:
+
