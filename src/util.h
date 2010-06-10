@@ -14,7 +14,7 @@ namespace sc2replay
 // DECLARATIONS
 //
 
-    typedef std::basic_istream<char> stream;
+    typedef std::basic_istream<uint8_t> stream;
     typedef std::pair<sc2replay::uint16_t, int> KV;
 
     std::string timestampToString( timestamp_t timestamp );
@@ -61,7 +61,7 @@ namespace sc2replay
         sc2replay::uint8_t l;
         int len = ((int)read(s))/2;
         char* buf = new char[len+1];
-        s.read(buf, len);
+        s.read(reinterpret_cast<uint8_t*>(buf), len);
         buf[len] = 0;
 
         return buf;
