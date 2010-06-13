@@ -3,7 +3,11 @@
 
 #include "types.h"
 #include "player.h"
-#include "util.h"
+
+#include <boost/spirit/include/qi.hpp>
+#include <boost/fusion/adapted/std_pair.hpp>
+#include <boost/fusion/include/std_pair.hpp>
+
 
 #include <iosfwd>
 #include <string>
@@ -32,8 +36,8 @@ namespace sc2replay
         ~Info();
   
     public:
-        template <typename T>
-        void load( std::basic_istream<T>& );
+        void load(const uint8_t* begin, off_t len) { load(begin, begin+len/sizeof(uint8_t)); }
+        void load(const uint8_t* begin, const uint8_t* end);
   
     public:
         const Players& getPlayers() const;
@@ -51,80 +55,27 @@ namespace sc2replay
         Players players_;
         std::string mapFilename_;
         std::string mapName_;
+
+
+        typedef boost::spirit::qi::rule<const uint8_t*, 
+                                        boost::spirit::qi::locals<int>, 
+                                        std::string() > string_rule_type;
+
+        typedef boost::spirit::qi::rule<const uint8_t*, 
+                                        int()> value_rule_type;
+
+        typedef boost::spirit::qi::rule<const uint8_t*, 
+                                        std::pair<sc2replay::uint16_t, 
+                                                  int>()> kv_rule_type;
+
+        typedef boost::spirit::qi::rule<const uint8_t*, 
+                                        sc2replay::Player()> player_rule_type;
+
+        static const string_rule_type string;
+        static const value_rule_type value;
+        static const kv_rule_type kv;
+        static const player_rule_type player;
     };
-
-} // namespace sc2replay
-
-namespace sc2replay
-{
-
-    template <typename T>
-    void Info::load( std::basic_istream<T>& s )
-    {
-
-        s.seekg(0x3f);
-        
-        while(readPlayer(s));
-
-        s.seekg(2, std::ios::cur);
-
-        mapName_ = readStr(s);
-          
-        s.seekg(2, std::ios::cur); // 04 02
-
-        //std::cout << readStr(s) << std::endl; //what's this?
-
-        s.seekg(5, std::ios::cur); // 06 05 02 00 02
-
-        mapFilename_ = readStr(s);
-    }
-
-    template <typename T>
-    bool
-    Info::readPlayer(std::basic_istream<T>& s)
-    {
-        // player header is 05 12 00 02
-        // check for that
-        uint8_t hdr[] = { 0x5, 0x12, 0x0, 0x2 };
-        for (int idx = 0; idx < sizeof(hdr)/sizeof(uint8_t); ++idx)
-        {
-            if (read(s) != hdr[idx])
-            {
-                s.seekg(-1 - idx, std::ios::cur); //reset file to state before call
-                return false;
-            }
-        }
-
-        std::string shortName = readStr(s);
-
-        s.seekg(3, std::ios::cur); // 02 05 08
-
-        readKV(s); // key = 00 09
-
-        s.seekg(6, std::ios::cur); // unknown2
-
-        readKV(s); // key = 04 09
-
-        s.seekg(2, std::ios::cur); // 06 02
-
-        std::string fullName = readStr(s); // fullName
-
-        s.seekg(2, std::ios::cur); // 04 02
-
-        std::string race = readStr(s); // race
-
-        s.seekg(3, std::ios::cur); // 06 05 08
-
-        for (int i=0; i < 9; ++i)
-            readKV(s);
-
-        if (shortName.size() && race.size())
-            players_.push_back(Player(shortName, race, fullName));
-
-        return true;
-
-    }
-    
 
 } // namespace sc2replay
 

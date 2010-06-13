@@ -41,7 +41,7 @@ void Replay::load( const std::string& filename )
   const MPQFile* messageFile = archive.getFile( "replay.message.events" );
   const MPQFile* saveFile    = archive.getFile( "save.jpg"              );
   
-  info_.load         ( *infoFile->getFileStream());
+  info_.load         ( infoFile->getFileContent(), infoFile->getFileSize());
   gameEvents_.load   ( gameFile->getFileContent(),    gameFile->getFileSize()    );
   syncEvents_.load   ( syncFile->getFileContent(),    syncFile->getFileSize()    );
   messageEvents_.load( messageFile->getFileContent(), messageFile->getFileSize() );
