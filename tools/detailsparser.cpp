@@ -34,6 +34,7 @@ int main(int argc, char** argv)
     po::variables_map vm;
 
     desc.add_options()
+        ("help", "display this help message")
         ("noextract", "input file is a replay.details file, not an MPQ archive")
         ("input-file", po::value<std::string>(), "input file")
         ;
@@ -46,6 +47,7 @@ int main(int argc, char** argv)
     if (vm.count("input-file") != 1)
     {
         std::cerr << "You have to specify an input file!" << std::endl;
+        std::cout << desc << std::endl;
         return 1;
     }
 
