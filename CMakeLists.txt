@@ -52,6 +52,7 @@ ENDIF ( BUILD_STATIC )
 
 TARGET_LINK_LIBRARIES( ReplayAnalyzer ${Boost_LIBRARIES} ${MPQLib} )
 
+
 ################################### Options ###################################
 IF ( BUILD_STATIC )
   ADD_DEFINITIONS( -DBUILD_STATIC )

@@ -2,7 +2,13 @@
 #define SC2REPLAY_PLAYER_H
 
 #include <string>
+#include <map>
+#include <vector>
 #include <boost/fusion/adapted/struct/adapt_struct.hpp>
+
+#include "types.h"
+
+#include <ostream>
 
 namespace sc2replay
 {
@@ -24,14 +30,27 @@ namespace sc2replay
         std::string shortName_;
         std::string fullName_;
         std::string race_;
+
+        typedef std::vector<std::pair<uint8_t, int> > attributes_type;
+        attributes_type attributes_;
+
+        friend std::ostream&
+        operator<<(std::ostream& out, const sc2replay::Player& p)
+            {
+                out << p.shortName_;
+                return out;
+            }
+
     };
 }
+
 
 BOOST_FUSION_ADAPT_STRUCT(
     sc2replay::Player,
     (std::string, shortName_)
     (std::string, fullName_)
-    (std::string, race_))
+    (std::string, race_)
+    (sc2replay::Player::attributes_type, attributes_))
 
 #endif
 // Local Variables:

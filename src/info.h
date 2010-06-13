@@ -1,6 +1,8 @@
 #ifndef SC2REPLAY_INFO_H
 #define SC2REPLAY_INFO_H
 
+#define BOOST_SPIRIT_DEBUG
+
 #include "types.h"
 #include "player.h"
 
@@ -61,7 +63,7 @@ namespace sc2replay
                                         boost::spirit::qi::locals<int>, 
                                         std::string() > string_rule_type;
 
-        typedef boost::spirit::qi::rule<const uint8_t*, 
+        typedef boost::spirit::qi::rule<const uint8_t*,
                                         int()> value_rule_type;
 
         typedef boost::spirit::qi::rule<const uint8_t*, 
@@ -71,10 +73,11 @@ namespace sc2replay
         typedef boost::spirit::qi::rule<const uint8_t*, 
                                         sc2replay::Player()> player_rule_type;
 
-        static const string_rule_type string;
-        static const value_rule_type value;
-        static const kv_rule_type kv;
-        static const player_rule_type player;
+        string_rule_type string;
+        value_rule_type value;
+        kv_rule_type kv;
+        player_rule_type player;
+
     };
 
 } // namespace sc2replay

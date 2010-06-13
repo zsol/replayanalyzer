@@ -8,6 +8,7 @@
 #include <player.h>
 #include <info.h>
 
+
 namespace ios = boost::iostreams;
 namespace po = boost::program_options;
 
@@ -66,7 +67,6 @@ int main(int argc, char** argv)
         end = begin + f->getFileSize() / sizeof(unsigned char*);
     }
 
-    
     sc2replay::Info i;
     i.load(begin, end);
 
@@ -75,6 +75,11 @@ int main(int argc, char** argv)
     {
         std::cout << "shortName: " << it->getShortName() << "\t Race: " << 
             it->getRace() << "\t fullName: " << it->getFullName() << std::endl;
+        for (sc2replay::Player::attributes_type::const_iterator attrit = it->attributes_.begin();
+             attrit != it->attributes_.end(); ++attrit)
+        {
+            std::cout << std::hex << "\tKey: " << (int)attrit->first << "\tVal: " << attrit->second << std::endl;
+        }
     }
 
 }

@@ -1,33 +1,52 @@
 #include "info.h"
 #include "types.h"
+#include "valueparser.h"
 
 #include <boost/spirit/include/phoenix.hpp>
+#include <boost/spirit/home/qi/nonterminal/debug_handler.hpp>
 
 #include <fstream>
-
+#include <iostream>
 
 using namespace boost::spirit::qi;
+using namespace boost::phoenix;
+
 
 namespace sc2replay
 {
 
-    const Info::string_rule_type Info::string = 
-        byte_[_a = _1] >> repeat(_a/2)[char_[_val += _1]];
-    const Info::value_rule_type Info::value = 
-        (&byte_[if_(0==(_1 & 0x80))[_pass=false]] >> big_word[_val = _1 & 0x7fff]) | byte_;
-    const Info::kv_rule_type Info::kv = 
-        big_word >> Info::value;
-    const Info::player_rule_type Info::player = 
-        omit[byte_(0x5) >> byte_(0x12) >> byte_(0x0) >> byte_(0x2)] >>
-        string >> omit[byte_(0x2) >> byte_(0x5) >> byte_(0x8)] >> omit[kv] >> 
-        omit[repeat(6)[byte_]] >> omit[kv] >> omit[byte_(0x6) >> byte_(0x2)] >>
-        string >> omit[byte_(0x4) >> byte_(0x2)] >> 
-        string >> omit[byte_(0x6) >> byte_(0x5) >> byte_(0x8)] >>
-        omit[repeat(9)[kv]];
-
+    
     Info::Info()
     {
-  
+
+        string = 
+            byte_[_a = _1/2] > repeat(_a)[char_];
+        value = 
+            (&byte_[if_(0<(_1 & 0xc0))[_pass=false]] >> byte_[_val = static_cast_<int>(_1)]) |
+            little_word[_val = static_cast_<int>(_1) >> 2];
+
+
+        kv = 
+            word >> value;
+        player = 
+            omit[byte_(0x5) >> byte_(0x12) >> byte_(0x0) >> byte_(0x2)] >>
+            string >> omit[byte_(0x2) >> byte_(0x5) >> byte_(0x8)] >> omit[kv] >> 
+            omit[repeat(6)[byte_]] >> omit[kv] >> omit[byte_(0x6) >> byte_(0x2)] >>
+            string >> omit[byte_(0x4) >> byte_(0x2)] >>
+            string >> omit[byte_(0x6) >> byte_(0x5) >> byte_(0x8)] >>
+            repeat(9)[kv];
+
+        player.name("player");
+        kv.name("KeyValue");
+        value.name("value");
+        string.name("string");
+
+        on_error<fail>(string,
+                       std::cout << val("Error! Expecting ")
+                       << _4 << val(" here: \"") << _3 << 
+                       val("\" from: ") << _1 << std::endl
+            );
+        debug(string);
     }
 
     Info::~Info()
@@ -37,9 +56,14 @@ namespace sc2replay
     void
     Info::load(const uint8_t* begin, const uint8_t* end)
     {
+        // parse(begin, end,
+        //       omit[repeat(7)[byte_]] >> *player,
+        //       players_);
+        std::string asd;
         parse(begin, end,
-              omit[repeat(0x3f)[byte_]] >> *player,
-              players_);
+              omit[repeat(0xa9)[byte_]] >> string,
+              asd);
+        std::cout << asd << std::endl;
     }
 
     const Info::Players& Info::getPlayers() const
