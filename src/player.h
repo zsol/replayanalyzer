@@ -2,13 +2,14 @@
 #define SC2REPLAY_PLAYER_H
 
 #include <string>
+#include <boost/fusion/adapted/struct/adapt_struct.hpp>
 
 namespace sc2replay
 {
-    class Player
+    struct Player
     {
-    public:
-        Player(const std::string& sn, const std::string& r, const std::string& fn)
+        explicit Player(const std::string& sn = "", const std::string& r = "", 
+                        const std::string& fn = "")
             : shortName_(sn), fullName_(fn), race_(r)
         {}
 
@@ -18,12 +19,19 @@ namespace sc2replay
 
         bool operator==(const Player& o) const { return shortName_ == o.shortName_; }
 
-    private:
+        bool operator!() const { return shortName_.size() && fullName_.size() && race_.size(); }
+
         std::string shortName_;
         std::string fullName_;
         std::string race_;
     };
 }
+
+BOOST_FUSION_ADAPT_STRUCT(
+    sc2replay::Player,
+    (std::string, shortName_)
+    (std::string, fullName_)
+    (std::string, race_))
 
 #endif
 // Local Variables:

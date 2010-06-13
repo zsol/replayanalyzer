@@ -5,7 +5,9 @@
 
 #include <string>
 #include <iosfwd>
+#include <fstream>
 #include <boost/iostreams/stream.hpp>
+#include <boost/iostreams/code_converter.hpp>
 #include <boost/iostreams/device/array.hpp>
 
 namespace sc2replay
@@ -42,7 +44,7 @@ public:
            off_t              size );
   ~MPQFile();
   
-  typedef boost::iostreams::stream<boost::iostreams::basic_array_source<uint8_t> > array_stream;
+  typedef boost::iostreams::stream<boost::iostreams::array_source> array_stream;
 
 public:
   void load( const std::string& filename );

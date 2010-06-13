@@ -37,7 +37,7 @@ namespace sc2replay
                       const std::string& filename, 
                       const uint8_t* buffer, off_t size )
         : archive_( archive ), filename_( filename ), 
-          buffer_( buffer ), size_( size ), stream_(buffer_, size_)
+          buffer_( buffer ), size_( size ), stream_(reinterpret_cast<const char*>(buffer), size_)
     {
     }
 
