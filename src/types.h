@@ -39,6 +39,6 @@ typedef uint32_t timestamp_t;
 #endif // S2REPLAY_TYPES_H
 // Local Variables:
 // mode:c++
-// c-file-style:stroustrup
+// c-file-style: "stroustrup"
 // end:
 

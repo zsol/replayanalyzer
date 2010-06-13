@@ -97,6 +97,6 @@ private:
 #endif // SC2REPLAY_MESSAGEEVENTS_H
 // Local Variables:
 // mode:c++
-// c-file-style:stroustrup
+// c-file-style: "stroustrup"
 // end:
 

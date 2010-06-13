@@ -222,6 +222,6 @@ void MessageEvents::exportDump( const std::string& filename ) const
 }
 // Local Variables:
 // mode:c++
-// c-file-style:stroustrup
+// c-file-style: "stroustrup"
 // end:
 

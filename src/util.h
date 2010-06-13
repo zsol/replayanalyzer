@@ -88,6 +88,6 @@ namespace sc2replay
 #endif // SC2REPLAY_UTIL_H
 // Local Variables:
 // mode:c++
-// c-file-style:stroustrup
+// c-file-style: "stroustrup"
 // end:
 

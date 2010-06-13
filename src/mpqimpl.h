@@ -36,6 +36,6 @@ private:
 #endif // SC2REPLAY_MPQIMPL_H
 // Local Variables:
 // mode:c++
-// c-file-style:stroustrup
+// c-file-style: "stroustrup"
 // end:
 

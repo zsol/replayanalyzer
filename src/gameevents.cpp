@@ -332,6 +332,6 @@ SystemSynchronization* GameEvents::parseSystemSync( off_t& offset, GameEvent& ev
 }
 // Local Variables:
 // mode:c++
-// c-file-style:stroustrup
+// c-file-style: "stroustrup"
 // end:
 
