@@ -35,7 +35,7 @@ SOURCE_GROUP( "Headers"           FILES ${Headers} )
 INCLUDE( FindBoost )
 SET( Boost_USE_MULTITHREADED ON )
 SET( Boost_USE_STATIC_LIBS   ON )
-FIND_PACKAGE( Boost REQUIRED COMPONENTS iostreams )
+FIND_PACKAGE( Boost REQUIRED COMPONENTS iostreams program_options)
 
 FIND_LIBRARY( MPQLib NAMES mpq )
 
@@ -63,6 +63,7 @@ ENDIF( BUILD_DOC )
 
 IF ( BUILD_TOOLS )
   ADD_SUBDIRECTORY( tools )
+#  FIND_PACKAGE( Boost REQUIRED COMPONENTS program_options )
 ENDIF( BUILD_TOOLS )
 
 ############################## Target Properties ##############################
