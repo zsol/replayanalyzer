@@ -23,6 +23,9 @@ namespace sc2replay
     std::string readStr(stream& s);
     KV readKV(stream& s);
 
+    template <typename T>
+    std::string toString(const T&);
+
 //
 // IMPLEMENTATIONS
 //
@@ -81,6 +84,15 @@ namespace sc2replay
         }
         //std::cout << std::hex << key << " => " << val << std::endl;
         return std::make_pair(key, val);
+    }
+
+    template <typename T>
+    std::string toString( const T& t_ )
+    {
+        std::ostringstream oss;
+        oss << t_;
+  
+        return oss.str();
     }
 
 } // namespace sc2replay

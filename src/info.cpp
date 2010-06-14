@@ -14,7 +14,6 @@ using namespace boost::phoenix;
 
 namespace sc2replay
 {
-
     
     Info::Info()
     {

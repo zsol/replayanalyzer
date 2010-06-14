@@ -28,6 +28,10 @@ namespace sc2replay
         bool operator!() const { return isValid(); }
         bool isValid() const { return shortName_.size() && fullName_.size() && race_.size(); }
 
+        int team() const;
+        int color() const;
+        std::string colorAsString() const;
+
         std::string shortName_;
         std::string fullName_;
         std::string race_;
@@ -35,7 +39,7 @@ namespace sc2replay
         typedef std::vector<std::pair<uint8_t, int> > attributes_type;
         attributes_type attributes_;
 
-        friend std::ostream&
+        friend std::ostream&  
         operator<<(std::ostream& out, const sc2replay::Player& p)
             {
                 out << p.shortName_;
