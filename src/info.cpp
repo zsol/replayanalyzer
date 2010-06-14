@@ -19,14 +19,14 @@ namespace sc2replay
     Info::Info()
     {
 
-        string = 
-            byte_[_a = _1/2] > repeat(_a)[char_];
+        string %= 
+            omit[byte_[_a = _1/2]] > repeat(_a)[byte_];
         value = 
             (&byte_[if_(0<(_1 & 0xc0))[_pass=false]] >> byte_[_val = static_cast_<int>(_1)]) |
             little_word[_val = static_cast_<int>(_1) >> 2];
 
 
-        kv = 
+        kv %= 
             word >> value;
         player = 
             omit[byte_(0x5) >> byte_(0x12) >> byte_(0x0) >> byte_(0x2)] >>
@@ -46,7 +46,8 @@ namespace sc2replay
                        << _4 << val(" here: \"") << _3 << 
                        val("\" from: ") << _1 << std::endl
             );
-        debug(string);
+        //debug(string);
+        //debug(player);
     }
 
     Info::~Info()
@@ -56,14 +57,9 @@ namespace sc2replay
     void
     Info::load(const uint8_t* begin, const uint8_t* end)
     {
-        // parse(begin, end,
-        //       omit[repeat(7)[byte_]] >> *player,
-        //       players_);
-        std::string asd;
         parse(begin, end,
-              omit[repeat(0xa9)[byte_]] >> string,
-              asd);
-        std::cout << asd << std::endl;
+              omit[repeat(7)[byte_]] >> *player,
+              players_);
     }
 
     const Info::Players& Info::getPlayers() const

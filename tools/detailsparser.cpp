@@ -73,6 +73,8 @@ int main(int argc, char** argv)
     for (std::vector<sc2replay::Player>::const_iterator it = i.getPlayers().begin();
          it != i.getPlayers().end(); ++it)
     {
+        if (not it->isValid())
+            continue;
         std::cout << "shortName: " << it->getShortName() << "\t Race: " << 
             it->getRace() << "\t fullName: " << it->getFullName() << std::endl;
         for (sc2replay::Player::attributes_type::const_iterator attrit = it->attributes_.begin();

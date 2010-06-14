@@ -25,7 +25,8 @@ namespace sc2replay
 
         bool operator==(const Player& o) const { return shortName_ == o.shortName_; }
 
-        bool operator!() const { return shortName_.size() && fullName_.size() && race_.size(); }
+        bool operator!() const { return isValid(); }
+        bool isValid() const { return shortName_.size() && fullName_.size() && race_.size(); }
 
         std::string shortName_;
         std::string fullName_;
