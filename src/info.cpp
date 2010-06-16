@@ -3,7 +3,6 @@
 #include "valueparser.h"
 
 #include <boost/spirit/include/phoenix.hpp>
-#include <boost/spirit/home/qi/nonterminal/debug_handler.hpp>
 
 #include <fstream>
 #include <iostream>
