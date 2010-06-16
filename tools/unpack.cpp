@@ -29,7 +29,9 @@ getFile(mpq_archive_s* archive, const std::string& filename_)
 
 int main( int argc, char** argv )
 {
+#ifndef NEW_LIBMPQ
     libmpq__init();
+#endif
     mpq_archive_s *a;
     if (libmpq__archive_open(&a, argv[1], -1) != 0)
     {

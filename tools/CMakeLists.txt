@@ -1,3 +1,7 @@
+IF ( NEW_LIBMPQ )
+  ADD_DEFINITIONS ( -DNEW_LIBMPQ )
+ENDIF ( NEW_LIBMPQ )
+
 ADD_EXECUTABLE( unpack unpack.cpp )
 TARGET_LINK_LIBRARIES( unpack mpq )
 

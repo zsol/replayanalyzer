@@ -8,13 +8,21 @@ namespace sc2replay
 
 MPQArchiveImpl::MPQArchiveImpl()
 {
-  static bool initialized = false;
-  if ( !initialized )
+  static bool initialized = 
+#ifdef NEW_LIBMPQ
+      true
+#else
+      false
+#endif
+      ;
+
+#ifndef NEW_LIBMPQ
+  if (not initialized)
   {
-    // Comment this line if using a newer version of libmpq that removed libmpq__init & libmpq__shutdown
-    libmpq__init();
-    initialized = true;
+      libmpq__init();
+      initialized = true;
   }
+#endif
 }
 
 MPQArchiveImpl::~MPQArchiveImpl()

@@ -17,6 +17,7 @@ SET( ReplayAnalyzer_PATCH_LEVEL   0 )
 OPTION( BUILD_DOC    "Build the doxygen documentation"         ON  )
 OPTION( BUILD_STATIC "Build as a static library"               ON  )
 OPTION( BUILD_TOOLS  "Build the tools"                         ON  )
+OPTION( NEW_LIBMPQ   "Use new (>0.4.2) version of libmpq"      OFF )
 
 MESSAGE( STATUS "Building documentation:   " ${BUILD_DOC}    )
 MESSAGE( STATUS "Building static:          " ${BUILD_STATIC} )
@@ -66,6 +67,10 @@ IF ( BUILD_TOOLS )
   ADD_SUBDIRECTORY( tools )
 #  FIND_PACKAGE( Boost REQUIRED COMPONENTS program_options )
 ENDIF( BUILD_TOOLS )
+
+IF ( NEW_LIBMPQ )
+  ADD_DEFINITIONS( -DNEW_LIBMPQ )
+ENDIF ( NEW_LIBMPQ )
 
 ############################## Target Properties ##############################
 SET_TARGET_PROPERTIES( ReplayAnalyzer PROPERTIES LINKER_LANGUAGE CXX ) # Language forced to C++
