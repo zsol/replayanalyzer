@@ -1,1 +1,10 @@
 Parser and analyzer library for StarCraft II replay files
+
+Alpha preview version.
+
+To compile you need:
+ * cmake
+ * the boost c++ libraries (version >= 1.41)
+ * libmpq (version >= 0.4.2)
+
+Feedback really appreciated!
