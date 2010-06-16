@@ -52,7 +52,7 @@ const std::string& MPQArchiveImpl::getFilename() const
 MPQFile* MPQArchiveImpl::getFile( const MPQArchive* self, const std::string& filename ) const
 {
   uint32_t number = 0;
-  ::off_t    size   = 0;
+  ::off_t size = 0, actualsize = 0;
   uint8_t* buffer = 0;
   
   libmpq__file_number( archive_, filename.c_str(), &number );
@@ -60,9 +60,9 @@ MPQFile* MPQArchiveImpl::getFile( const MPQArchive* self, const std::string& fil
   
   buffer = new uint8_t[size];
   
-  libmpq__file_read( archive_, number, buffer, size, NULL );
+  libmpq__file_read( archive_, number, buffer, size, &actualsize );
   
-  return new MPQFile( *self, filename, buffer, size );
+  return new MPQFile( filename, buffer, actualsize );
 }
 
 } // namespace sc2replay

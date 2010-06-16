@@ -38,8 +38,7 @@ private:
 class MPQFile
 {
 public:
-  MPQFile( const MPQArchive&  archive,
-           const std::string& filename,
+  MPQFile( const std::string& filename,
            const uint8_t*     buffer,
            off_t              size );
   ~MPQFile();
@@ -50,7 +49,6 @@ public:
   void load( const std::string& filename );
   
 public:
-  const MPQArchive&  getArchive    () const;
   off_t              getFileSize   () const;
   const std::string& getFileName   () const;
   const uint8_t*     getFileContent() const;
@@ -62,7 +60,6 @@ private:
   off_t             size_;
   const uint8_t*    buffer_;
   const std::string filename_;
-  const MPQArchive& archive_;
   array_stream stream_;
   
 private:

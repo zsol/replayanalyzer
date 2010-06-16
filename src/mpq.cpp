@@ -33,22 +33,16 @@ namespace sc2replay
 // MPQ File
 //
 
-    MPQFile::MPQFile( const MPQArchive& archive, 
-                      const std::string& filename, 
+    MPQFile::MPQFile( const std::string& filename,
                       const uint8_t* buffer, off_t size )
-        : archive_( archive ), filename_( filename ), 
-          buffer_( buffer ), size_( size ), stream_(reinterpret_cast<const char*>(buffer), size_)
+        : filename_( filename ), buffer_( buffer ), size_( size ), 
+          stream_(reinterpret_cast<const char*>(buffer), size_)
     {
     }
 
     MPQFile::~MPQFile()
     {
-        delete buffer_;
-    }
-
-    const MPQArchive& MPQFile::getArchive() const
-    {
-        return archive_;
+        delete[] buffer_;
     }
 
     off_t MPQFile::getFileSize() const

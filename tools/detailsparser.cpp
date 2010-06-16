@@ -64,7 +64,7 @@ int main(int argc, char** argv)
         sc2replay::MPQFile* f = mpq.getFile("replay.details");
         
         begin = f->getFileContent();
-        end = begin + f->getFileSize() / sizeof(unsigned char*);
+        end = begin + f->getFileSize();
     }
 
     sc2replay::Info i;
