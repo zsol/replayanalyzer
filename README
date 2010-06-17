@@ -5,6 +5,6 @@ Alpha preview version.
 To compile you need:
  * cmake
  * the boost c++ libraries (version >= 1.41)
- * libmpq (version >= 0.4.2)
+ * libmpq (version >= 0.4.2, if you use the latest bleeding edge, be sure to set the NEW_LIBMPQ cmake flag to ON)
 
 Feedback really appreciated!
